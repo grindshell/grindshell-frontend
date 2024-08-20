@@ -1,4 +1,5 @@
 import path from "path";
+/// <reference types="vitest" />
 import { defineConfig } from "vite";
 import solid from "vite-plugin-solid";
 
@@ -19,6 +20,13 @@ export default defineConfig(async () => ({
         notFound: path.resolve(__dirname, "./src/not-found.html")
       }
     }
+  },
+  test: {
+    includeSource: ["src/**/*.{js,ts}"]
+  },
+  // TODO check if this is actually undefined or the string "undefined"
+  define: {
+    "import.meta.vitest": "undefined",
   },
 
   // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`

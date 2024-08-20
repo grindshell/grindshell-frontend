@@ -5,8 +5,8 @@ import type { VariantProps } from "class-variance-authority"
 import { cva } from "class-variance-authority"
 
 import { cn } from "~/lib/utils"
-import type { BadgeProps } from "~/components/ui/badge"
-import { Badge } from "~/components/ui/badge"
+import type { BadgeProps } from "~/components/solidui/badge"
+import { Badge } from "~/components/solidui/badge"
 
 type DeltaType = "increase" | "moderateIncrease" | "unchanged" | "moderateDecrease" | "decrease"
 

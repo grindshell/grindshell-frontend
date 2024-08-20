@@ -6,7 +6,7 @@ import * as ToggleGroupPrimitive from "@kobalte/core/toggle-group"
 import type { VariantProps } from "class-variance-authority"
 
 import { cn } from "~/lib/utils"
-import { toggleVariants } from "~/components/ui/toggle"
+import { toggleVariants } from "~/components/solidui/toggle"
 
 const ToggleGroupContext = createContext<VariantProps<typeof toggleVariants>>({
   size: "default",
@@ -15,7 +15,7 @@ const ToggleGroupContext = createContext<VariantProps<typeof toggleVariants>>({
 
 type ToggleGroupRootProps<T extends ValidComponent = "div"> =
   ToggleGroupPrimitive.ToggleGroupRootProps<T> &
-    VariantProps<typeof toggleVariants> & { class?: string | undefined; children?: JSX.Element }
+  VariantProps<typeof toggleVariants> & { class?: string | undefined; children?: JSX.Element }
 
 const ToggleGroup = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, ToggleGroupRootProps<T>>
@@ -50,7 +50,7 @@ const ToggleGroup = <T extends ValidComponent = "div">(
 
 type ToggleGroupItemProps<T extends ValidComponent = "button"> =
   ToggleGroupPrimitive.ToggleGroupItemProps<T> &
-    VariantProps<typeof toggleVariants> & { class?: string | undefined }
+  VariantProps<typeof toggleVariants> & { class?: string | undefined }
 
 const ToggleGroupItem = <T extends ValidComponent = "button">(
   props: PolymorphicProps<T, ToggleGroupItemProps<T>>

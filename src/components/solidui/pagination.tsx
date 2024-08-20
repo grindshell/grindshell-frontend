@@ -5,7 +5,7 @@ import * as PaginationPrimitive from "@kobalte/core/pagination"
 import type { PolymorphicProps } from "@kobalte/core/polymorphic"
 
 import { cn } from "~/lib/utils"
-import { buttonVariants } from "~/components/ui/button"
+import { buttonVariants } from "~/components/solidui/button"
 
 const PaginationItems = PaginationPrimitive.Items
 

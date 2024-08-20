@@ -37,3 +37,11 @@ yarn tauri dev
 ```bash
 yarn vite
 ```
+
+## test
+
+### js
+
+```powershell
+yarn vitest run
+```
