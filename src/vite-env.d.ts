@@ -14,5 +14,8 @@ interface ImportMeta {
 }
 
 interface ImportMetaEnv {
-  readonly VITE_API_ENDPOINT: string | undefined;
+  readonly VITE_UI_DEV: number | undefined,
+
+  readonly VITE_API_ENDPOINT: string | undefined,
+  readonly VITE_WS_ENDPOINT: string | undefined,
 }

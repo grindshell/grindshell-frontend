@@ -102,14 +102,23 @@ function Login(props: ChangePageProps) {
   createEffect(() => {
     setUsernameError(validateUsername(username()));
     setCanSubmit(usernameError() === undefined && password().length >= 10);
+
+    if (import.meta.env.VITE_UI_DEV) {
+      console.log("ui dev mode detected, allowing submit");
+      setCanSubmit(true);
+    }
   });
 
   const submit = (e: Event) => {
     e.preventDefault();
 
-    if (!import.meta.env.VITE_API_ENDPOINT) {
+    if (import.meta.env.VITE_UI_DEV) {
       window.location.replace("game.html");
-      console.log("currently in debug mode");
+      return;
+    }
+
+    if (!import.meta.env.VITE_API_ENDPOINT) {
+      console.error("currently in debug mode");
       return;
     }
 

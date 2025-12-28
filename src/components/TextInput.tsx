@@ -8,12 +8,21 @@ type Props = {
 };
 
 function TextInput(props: Props) {
-
   return (
     <fieldset class="fieldset w-full">
       {props.legend && <legend class="fieldset-legend">{props.legend}</legend>}
-      <input type={props.type || "text"} class="input w-full" placeholder={props.placeholder ?? ""} onInput={props.onInput} />
-      {(props.errText || props.optional) && <p class={"label" + (props.errText ? " text-red-400" : "")}>{props.errText || "Optional"}</p>}
+      <input
+        type={props.type || "text"}
+        class="input w-full"
+        placeholder={props.placeholder ?? ""}
+        onInput={props.onInput}
+      />
+      {(props.errText || props.optional) && <p
+        classList={{
+          "label": true,
+          "text-red-400": props.errText !== undefined
+        }}
+      >{props.errText || "Optional"}</p>}
     </fieldset>
   );
 }
