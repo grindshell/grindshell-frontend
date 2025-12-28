@@ -3,16 +3,27 @@ import { createStore, SetStoreFunction } from "solid-js/store";
 
 const STORAGE_KEY = "GameData";
 
-class Data {
+export class Data {
   lastError?: string;
   showTimeTracker = false;
+  showResourceEditor = false;
 
   static isData(input: object): input is Data {
     return "showTimeTracker" in input;
   }
+
+  static clone(other: Data) {
+    const data = new Data();
+    for (const [k, v] of Object.entries(other)) {
+      // @ts-ignore cloning another Data object so the keys are valid
+      data[k] = v;
+    }
+
+    return data;
+  }
 }
 
-class Handler {
+export class Handler {
   ws: WebSocket;
   /**
    * Definitively assigned by calling the #load method.

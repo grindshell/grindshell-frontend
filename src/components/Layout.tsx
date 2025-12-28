@@ -4,6 +4,8 @@ import TopBar from "./TopBar";
 import { useGameContext } from "@/lib/game-context";
 import * as Icons from "@/components/Icons";
 import { RoutePath } from "@/routes";
+import GlobalChat from "@/pages/game/GlobalChat";
+import Resizable from "@corvu/resizable";
 
 export const LAYOUT_TOGGLE = "layout-toggle";
 
@@ -34,6 +36,11 @@ const GAME_PAGE_LIST: SidebarListItem[] = [
     route: "/"
   },
   {
+    el: Icons.MapPin,
+    name: "Actions",
+    route: "/actions"
+  },
+  {
     el: Icons.Map,
     name: "Area",
     route: "/area"
@@ -55,6 +62,11 @@ const UTIL_PAGE_LIST: SidebarListItem[] = [
     el: Icons.Identification,
     name: "Profile",
     route: "/profile"
+  },
+  {
+    el: Icons.NumberedList,
+    name: "Rankings",
+    route: "/rankings"
   }
 ];
 
@@ -119,6 +131,15 @@ function LeftSidebar() {
               isSelected={selected() === "/time-tracker"}
             />
           </Show>
+          <Show when={ctx.data.showResourceEditor}>
+            <SidebarItem
+              el={Icons.ClipboardDocumentList}
+              name="Resource Editor"
+              route="/resource-editor"
+              onClick={() => setSelected("/resource-editor")}
+              isSelected={selected() === "/resource-editor"}
+            />
+          </Show>
           <div class="flex grow h-full"></div>
           <Divider />
           <SidebarItem
@@ -145,7 +166,7 @@ function Divider() {
 type SidebarItemProps = {
   el: () => JSXElement,
   name: string,
-  route: string,
+  route: RoutePath,
   onClick: () => void,
   isSelected: boolean;
 };
@@ -174,10 +195,24 @@ function SidebarItem(props: SidebarItemProps) {
 }
 
 function Content(props: ParentProps) {
+  const CONTENT_SIZE = 0.7;
+
   return (
-    <div class="drawer-content">
+    <div class="drawer-content flex flex-col">
       <TopBar />
-      <div class="p-4">{props.children}</div>
+      <Resizable class="size-full flex flex-col grow" orientation="vertical">
+        <Resizable.Panel initialSize={CONTENT_SIZE}>
+          <div class="size-full p-4">{props.children}</div>
+        </Resizable.Panel>
+
+        <Resizable.Handle class="min-h-1">
+          <div class="bg-base-300 hover:bg-black size-full"></div>
+        </Resizable.Handle>
+
+        <Resizable.Panel initialSize={1.0 - CONTENT_SIZE}>
+          <GlobalChat />
+        </Resizable.Panel>
+      </Resizable>
     </div>
   );
 }
