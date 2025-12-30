@@ -1,6 +1,7 @@
 import BoolInput from "@/components/BoolInput";
-import { Data, useGameContext } from "@/lib/game-context";
-import { createEffect, createSignal, ParentProps } from "solid-js";
+import SelectInput from "@/components/SelectInput";
+import { Data, THEMES, useGameContext } from "@/lib/game-context";
+import { createEffect, createSignal, For, onCleanup, ParentProps } from "solid-js";
 import { createStore, Part } from "solid-js/store";
 
 function Settings() {
@@ -29,6 +30,14 @@ function Settings() {
     setApplyRevertEnabled(settingsChanged.length !== 0);
   });
 
+  const setTheme = (theme?: string) => {
+    document.querySelector("html")!.setAttribute("data-theme", theme ?? ctx.data.theme);
+  };
+
+  onCleanup(() => {
+    setTheme();
+  });
+
   /**
    * Reset signals and stores that track changes.
    */
@@ -36,6 +45,7 @@ function Settings() {
     setApplyRevertEnabled(false);
     setLastChange(undefined);
     setSettingsChanged([]);
+    setTheme();
   };
 
   /**
@@ -45,9 +55,17 @@ function Settings() {
   /**
    * Factory function for creating callbacks that modify WIP data.
    */
-  const inputCallback = (name: Part<Data, keyof Data>, val: EventKey) => {
-    return (e: Event & { target: HTMLInputElement, currentTarget: HTMLInputElement; }) => {
+  const inputCallback = (
+    name: Part<Data, keyof Data>,
+    val: EventKey,
+    extraFunc?: (e: Event & { target: HTMLElement, currentTarget: HTMLElement; }) => void
+  ) => {
+    return (e: Event & { target: HTMLElement, currentTarget: HTMLElement; }) => {
+      if (extraFunc) {
+        extraFunc(e);
+      }
       setLastChange(name as string);
+      // @ts-ignore the event keys are correct
       setWIPData(name, e.target[val]);
     };
   };
@@ -91,6 +109,18 @@ function Settings() {
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <Tile>
+          <SelectInput
+            legend="Theme"
+            options={THEMES.sort()}
+            initialValue={wipData.theme}
+            onInput={inputCallback("theme", "value", (e) => {
+              // @ts-ignore this definitely exists
+              setTheme(e.target.value);
+            })}
+            label={wipData.theme !== ctx.data.theme ? "Live preview!" : undefined}
+          />
+        </Tile>
+        <Tile>
           <BoolInput
             legend="Time tracker"
             onInput={inputCallback("showTimeTracker", "checked")}
@@ -108,6 +138,54 @@ function Settings() {
             disabledText="Hide resource editor"
           />
         </Tile>
+        <Tile>
+          <div class="h-20"></div>
+        </Tile>
+        <Tile>
+          <div class="h-20"></div>
+        </Tile>
+        <Tile>
+          <div class="h-20"></div>
+        </Tile>
+        <Tile>
+          <div class="h-20"></div>
+        </Tile>
+        <Tile>
+          <div class="h-20"></div>
+        </Tile>
+        <Tile>
+          <div class="h-20"></div>
+        </Tile>
+        <Tile>
+          <div class="h-20"></div>
+        </Tile>
+        <Tile>
+          <div class="h-20"></div>
+        </Tile>
+        <Tile>
+          <div class="h-20"></div>
+        </Tile>
+        <Tile>
+          <div class="h-20"></div>
+        </Tile>
+        <Tile>
+          <div class="h-20"></div>
+        </Tile>
+        <Tile>
+          <div class="h-20"></div>
+        </Tile>
+        <Tile>
+          <div class="h-20"></div>
+        </Tile>
+        <Tile>
+          <div class="h-20"></div>
+        </Tile>
+        <Tile>
+          <div class="h-20"></div>
+        </Tile>
+        <Tile>
+          <div class="h-20"></div>
+        </Tile>
       </div>
     </div>
   );
@@ -115,7 +193,7 @@ function Settings() {
 
 function Tile(props: ParentProps) {
   return (
-    <div class="p-2 border rounded-2xl">
+    <div class="p-2 border rounded-xl bg-base-200">
       {props.children}
     </div>
   );

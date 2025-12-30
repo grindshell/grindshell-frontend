@@ -3,9 +3,6 @@
  * @module Icons
  */
 
-/**
- * Toggle sidebar icon.
- */
 export function CodeBracketSquare() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -15,9 +12,6 @@ export function CodeBracketSquare() {
   );
 }
 
-/**
- * Home icon.
- */
 export function Home() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -27,9 +21,6 @@ export function Home() {
   );
 }
 
-/**
- * Settings icon.
- */
 export function AdjustmentsHorizontal() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -39,9 +30,6 @@ export function AdjustmentsHorizontal() {
   );
 }
 
-/**
- * Profile icon.
- */
 export function Identification() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -51,9 +39,6 @@ export function Identification() {
   );
 }
 
-/**
- * About icon.
- */
 export function QuestionMarkCircle() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -63,9 +48,6 @@ export function QuestionMarkCircle() {
   );
 }
 
-/**
- * Global market icon.
- */
 export function Scale() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -75,9 +57,6 @@ export function Scale() {
   );
 }
 
-/**
- * Area icon.
- */
 export function Map() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -86,9 +65,6 @@ export function Map() {
   );
 }
 
-/**
- * Formation icon.
- */
 export function Users() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -98,9 +74,6 @@ export function Users() {
   );
 }
 
-/**
- * Unit icon.
- */
 export function User() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -109,9 +82,6 @@ export function User() {
   );
 }
 
-/**
- * Remove unit icon.
- */
 export function UserMinus() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -120,9 +90,6 @@ export function UserMinus() {
   );
 }
 
-/**
- * Add unit icon.
- */
 export function UserPlus() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -131,9 +98,6 @@ export function UserPlus() {
   );
 }
 
-/**
- * Active unit icon.
- */
 export function UserCircle() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -143,9 +107,6 @@ export function UserCircle() {
   );
 }
 
-/**
- * Time tracker icon.
- */
 export function TableCells() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -154,9 +115,6 @@ export function TableCells() {
   );
 }
 
-/**
- * Container icon.
- */
 export function ArchiveBox() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -165,9 +123,6 @@ export function ArchiveBox() {
   );
 }
 
-/**
- * Repeat icon.
- */
 export function ArrowPath() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -176,9 +131,6 @@ export function ArrowPath() {
   );
 }
 
-/**
- * Resource editor icon.
- */
 export function ClipboardDocumentList() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -187,9 +139,6 @@ export function ClipboardDocumentList() {
   );
 }
 
-/**
- * Rankings icon.
- */
 export function NumberedList() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -198,14 +147,19 @@ export function NumberedList() {
   );
 }
 
-/**
- * Actions icon.
- */
 export function MapPin() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
       <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
       <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+    </svg>
+  );
+}
+
+export function ViewfinderCircle() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 3.75H6A2.25 2.25 0 0 0 3.75 6v1.5M16.5 3.75H18A2.25 2.25 0 0 1 20.25 6v1.5m0 9V18A2.25 2.25 0 0 1 18 20.25h-1.5m-9 0H6A2.25 2.25 0 0 1 3.75 18v-1.5M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
     </svg>
   );
 }

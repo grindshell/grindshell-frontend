@@ -6,17 +6,17 @@ function GlobalChat() {
 
   return (
     <Resizable class="size-full bg-base-200 resize-y" orientation="horizontal">
-      <Resizable.Panel initialSize={1.0 - CHAT_SIZE} minSize={0.1}>
+      <Resizable.Panel initialSize={1.0 - CHAT_SIZE}>
         <div class="size-full p-2">
           Channels
         </div>
       </Resizable.Panel>
 
-      <Resizable.Handle class="min-w-1">
-        <div class="size-full bg-base-300 hover:bg-black"></div>
+      <Resizable.Handle class="w-0.5">
+        <div class="size-full bg-base-content hover:bg-accent"></div>
       </Resizable.Handle>
 
-      <Resizable.Panel initialSize={CHAT_SIZE} minSize={0.5}>
+      <Resizable.Panel initialSize={CHAT_SIZE}>
         <div class="size-full p-2 flex flex-col gap-2">
           <ChatInput />
           <ChatBox />
@@ -52,9 +52,8 @@ function ChatInput() {
 
 function ChatBox() {
   return (
-    <div class="grow border-4 border-base-300 rounded">
+    <div class="grow border rounded min-h-10 p-2 overflow-y-auto">
       <ul>
-
       </ul>
     </div>
   );

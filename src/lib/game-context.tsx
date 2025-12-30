@@ -1,12 +1,34 @@
+import { RoutePath } from "@/routes";
 import { createContext, ParentProps, useContext } from "solid-js";
 import { createStore, SetStoreFunction } from "solid-js/store";
 
 const STORAGE_KEY = "GameData";
 
+type Theme = "light" | "dark" | "cupcake" | "bumblebee" | "emerald" | "corporate" |
+  "synthwave" | "retro" | "cyberpunk" | "valentine" | "halloween" | "garden" |
+  "forest" | "aqua" | "lofi" | "pastel" | "fantasy" | "wireframe" | "black" |
+  "luxury" | "dracula" | "cmyk" | "autumn" | "business" | "acid" | "lemonade" |
+  "night" | "night" | "coffee" | "winter" | "dim" | "nord" | "sunset" | "caramellatte" |
+  "abyss" | "silk";
+
+export const THEMES: Theme[] = [
+  "light", "dark", "cupcake", "bumblebee", "emerald", "corporate",
+  "synthwave", "retro", "cyberpunk", "valentine", "halloween", "garden",
+  "forest", "aqua", "lofi", "pastel", "fantasy", "wireframe", "black",
+  "luxury", "dracula", "cmyk", "autumn", "business", "acid", "lemonade",
+  "night", "coffee", "winter", "dim", "nord", "sunset", "caramellatte",
+  "abyss", "silk"
+];
+
+type Action = "Idle" | "Travel" | "Follow" | "Combat" | "Harvest" | "Craft";
+
 export class Data {
   lastError?: string;
   showTimeTracker = false;
   showResourceEditor = false;
+  theme: Theme = "dark";
+  currentAction: Action = "Idle";
+  currentRoute: RoutePath = "/";
 
   static isData(input: object): input is Data {
     return "showTimeTracker" in input;
@@ -36,6 +58,7 @@ export class Handler {
 
   constructor() {
     this.#load();
+    document.querySelector("html")!.setAttribute("data-theme", this.data.theme);
 
     if (import.meta.env.VITE_UI_DEV) {
       // @ts-ignore in ui dev mode
@@ -83,7 +106,6 @@ export class Handler {
     const [data, setData] = createStore(new Data());
     this.data = data;
     this.setData = setData;
-
   }
 }
 

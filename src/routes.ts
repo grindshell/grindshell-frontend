@@ -1,5 +1,5 @@
 import { JSX } from "solid-js";
-import Overview from "./pages/game/Home";
+import Overview from "./pages/game/Overview";
 import Area from "./pages/game/Area";
 import GlobalMarket from "./pages/game/GlobalMarket";
 import Profile from "./pages/game/Profile";
@@ -9,9 +9,10 @@ import ResourceEditor from "./pages/game/ResourceEditor";
 import Formation from "./pages/game/Formation";
 import Rankings from "./pages/game/Rankings";
 import Actions from "./pages/game/Actions";
+import About from "./pages/game/About";
 
 export type RoutePath = "/" | "/actions" | "/area" | "/formation" | "/global-market" | "/profile" | "/rankings" |
-  "/time-tracker" | "/resource-editor" | "/settings";
+  "/time-tracker" | "/resource-editor" | "/about" | "/settings";
 
 type Route = {
   path: RoutePath,
@@ -54,6 +55,10 @@ export const Routes: Route[] = [
   {
     path: "/resource-editor",
     component: ResourceEditor
+  },
+  {
+    path: "/about",
+    component: About
   },
   {
     path: "/settings",

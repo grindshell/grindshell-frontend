@@ -1,6 +1,6 @@
 function Overview() {
   return (
-    <div>Home</div>
+    <div>Overview</div>
   );
 }
 

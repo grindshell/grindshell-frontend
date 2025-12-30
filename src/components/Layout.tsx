@@ -1,5 +1,5 @@
 import { useNavigate } from "@solidjs/router";
-import { createEffect, createSignal, For, JSX, JSXElement, ParentProps, Show } from "solid-js";
+import { createEffect, createSignal, For, JSX, JSXElement, onCleanup, ParentProps, Setter, Show } from "solid-js";
 import TopBar from "./TopBar";
 import { useGameContext } from "@/lib/game-context";
 import * as Icons from "@/components/Icons";
@@ -11,15 +11,13 @@ export const LAYOUT_TOGGLE = "layout-toggle";
 
 function Layout(props: ParentProps) {
   return (
-    <>
-      <div class="drawer lg:drawer-open">
-        <input id={LAYOUT_TOGGLE} type="checkbox" class="drawer-toggle" />
-        <Content>
-          {props.children}
-        </Content>
-        <LeftSidebar />
-      </div>
-    </>
+    <div class="drawer lg:drawer-open">
+      <input id={LAYOUT_TOGGLE} type="checkbox" class="drawer-toggle" />
+      <Content>
+        {props.children}
+      </Content>
+      <LeftSidebar />
+    </div>
   );
 }
 
@@ -31,8 +29,8 @@ type SidebarListItem = {
 
 const GAME_PAGE_LIST: SidebarListItem[] = [
   {
-    el: Icons.Home,
-    name: "Home",
+    el: Icons.ViewfinderCircle,
+    name: "Overview",
     route: "/"
   },
   {
@@ -70,13 +68,28 @@ const UTIL_PAGE_LIST: SidebarListItem[] = [
   }
 ];
 
+const BOTTOM_PAGE_LIST: SidebarListItem[] = [
+  {
+    el: Icons.AdjustmentsHorizontal,
+    name: "Settings",
+    route: "/settings"
+  },
+  {
+    el: Icons.QuestionMarkCircle,
+    name: "About",
+    route: "/about"
+  }
+];
+
 function LeftSidebar() {
-  const [selected, setSelected] = createSignal<RoutePath>("/");
-  const navigate = useNavigate();
   const ctx = useGameContext();
+  const [selected, setSelected] = createSignal<RoutePath>(ctx.data.currentRoute);
+  const navigate = useNavigate();
 
   createEffect(() => {
-    navigate(selected(), { replace: true });
+    ctx.setData("currentRoute", selected());
+    ctx.save();
+    navigate(ctx.data.currentRoute, { replace: true });
   });
 
   function toggleSidebar() {
@@ -99,29 +112,9 @@ function LeftSidebar() {
             </button>
           </li>
           <Divider />
-          <For each={GAME_PAGE_LIST}>
-            {({ el, name, route }) =>
-              <SidebarItem
-                el={el}
-                name={name}
-                route={route}
-                onClick={() => setSelected(route)}
-                isSelected={selected() === route}
-              />
-            }
-          </For>
+          <SidebarGroup list={GAME_PAGE_LIST} setter={setSelected} current_route={selected()} />
           <Divider />
-          <For each={UTIL_PAGE_LIST}>
-            {({ el, name, route }) =>
-              <SidebarItem
-                el={el}
-                name={name}
-                route={route}
-                onClick={() => setSelected(route)}
-                isSelected={selected() === route}
-              />
-            }
-          </For>
+          <SidebarGroup list={UTIL_PAGE_LIST} setter={setSelected} current_route={selected()} />
           <Show when={ctx.data.showTimeTracker}>
             <SidebarItem
               el={Icons.TableCells}
@@ -142,18 +135,32 @@ function LeftSidebar() {
           </Show>
           <div class="flex grow h-full"></div>
           <Divider />
-          <SidebarItem
-            el={Icons.AdjustmentsHorizontal}
-            name="Settings"
-            route="/settings"
-            onClick={() => setSelected("/settings")}
-            isSelected={selected() === "/settings"}
-          >
-
-          </SidebarItem>
+          <SidebarGroup list={BOTTOM_PAGE_LIST} setter={setSelected} current_route={selected()} />
         </ul>
       </div>
     </div>
+  );
+}
+
+type SidebarGroupProps = {
+  list: SidebarListItem[],
+  setter: Setter<RoutePath>,
+  current_route: string;
+};
+
+function SidebarGroup(props: SidebarGroupProps) {
+  return (
+    <For each={props.list}>
+      {({ el, name, route }) =>
+        <SidebarItem
+          el={el}
+          name={name}
+          route={route}
+          onClick={() => props.setter(route)}
+          isSelected={props.current_route === route}
+        />
+      }
+    </For>
   );
 }
 
@@ -198,15 +205,15 @@ function Content(props: ParentProps) {
   const CONTENT_SIZE = 0.7;
 
   return (
-    <div class="drawer-content flex flex-col">
+    <div class="h-screen drawer-content flex flex-col">
       <TopBar />
-      <Resizable class="size-full flex flex-col grow" orientation="vertical">
-        <Resizable.Panel initialSize={CONTENT_SIZE}>
-          <div class="size-full p-4">{props.children}</div>
+      <Resizable class="size-full overflow-hidden" orientation="vertical">
+        <Resizable.Panel class="overflow-hidden" initialSize={CONTENT_SIZE} minSize={0.1}>
+          <div class="p-4 size-full overflow-auto">{props.children}</div>
         </Resizable.Panel>
 
-        <Resizable.Handle class="min-h-1">
-          <div class="bg-base-300 hover:bg-black size-full"></div>
+        <Resizable.Handle class="h-0.5">
+          <div class="bg-base-content hover:bg-accent size-full"></div>
         </Resizable.Handle>
 
         <Resizable.Panel initialSize={1.0 - CONTENT_SIZE}>
