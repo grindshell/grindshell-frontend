@@ -138,54 +138,6 @@ function Settings() {
             disabledText="Hide resource editor"
           />
         </Tile>
-        <Tile>
-          <div class="h-20"></div>
-        </Tile>
-        <Tile>
-          <div class="h-20"></div>
-        </Tile>
-        <Tile>
-          <div class="h-20"></div>
-        </Tile>
-        <Tile>
-          <div class="h-20"></div>
-        </Tile>
-        <Tile>
-          <div class="h-20"></div>
-        </Tile>
-        <Tile>
-          <div class="h-20"></div>
-        </Tile>
-        <Tile>
-          <div class="h-20"></div>
-        </Tile>
-        <Tile>
-          <div class="h-20"></div>
-        </Tile>
-        <Tile>
-          <div class="h-20"></div>
-        </Tile>
-        <Tile>
-          <div class="h-20"></div>
-        </Tile>
-        <Tile>
-          <div class="h-20"></div>
-        </Tile>
-        <Tile>
-          <div class="h-20"></div>
-        </Tile>
-        <Tile>
-          <div class="h-20"></div>
-        </Tile>
-        <Tile>
-          <div class="h-20"></div>
-        </Tile>
-        <Tile>
-          <div class="h-20"></div>
-        </Tile>
-        <Tile>
-          <div class="h-20"></div>
-        </Tile>
       </div>
     </div>
   );

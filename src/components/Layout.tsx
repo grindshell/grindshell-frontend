@@ -208,8 +208,8 @@ function Content(props: ParentProps) {
     <div class="h-screen drawer-content flex flex-col">
       <TopBar />
       <Resizable class="size-full overflow-hidden" orientation="vertical">
-        <Resizable.Panel class="overflow-hidden" initialSize={CONTENT_SIZE} minSize={0.1}>
-          <div class="p-4 size-full overflow-auto">{props.children}</div>
+        <Resizable.Panel class="overflow-auto" initialSize={CONTENT_SIZE} minSize={0.1}>
+          <div class="p-4 size-full">{props.children}</div>
         </Resizable.Panel>
 
         <Resizable.Handle class="h-0.5">

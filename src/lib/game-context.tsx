@@ -20,7 +20,9 @@ export const THEMES: Theme[] = [
   "abyss", "silk"
 ];
 
-type Action = "Idle" | "Travel" | "Follow" | "Combat" | "Harvest" | "Craft";
+export type Action = "Idle" | "Travel" | "Follow" | "Combat" | "Harvest" | "Craft" | "Activity";
+
+export const ACTIONS: Action[] = ["Idle", "Travel", "Follow", "Combat", "Harvest", "Craft", "Activity"];
 
 export class Data {
   lastError?: string;

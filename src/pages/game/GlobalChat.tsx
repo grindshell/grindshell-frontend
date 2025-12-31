@@ -42,7 +42,7 @@ function ChatInput() {
       <button
         classList={{
           "btn": true,
-          "btn-soft": hasInput(),
+          "btn-primary": hasInput(),
           "btn-disabled": !hasInput()
         }}
       >Send</button>
